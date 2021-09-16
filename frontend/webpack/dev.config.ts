@@ -1,10 +1,11 @@
 import path from 'path';
 import webpack from 'webpack';
+import DotEnvPlugin from 'dotenv-webpack';
 
 import commonPlugins from './common-plugins';
 import rules from './common-rules';
 
-const config = {
+const config = (env: any) => ({
   mode: 'development',
   output: {
     publicPath: 'auto',
@@ -19,15 +20,16 @@ const config = {
   plugins: [
     ...commonPlugins,
     new webpack.HotModuleReplacementPlugin(),
+    new DotEnvPlugin(),
   ],
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.normalize(path.join(__dirname, '..', 'build')),
     historyApiFallback: true,
-    port: 3001,
+    port: 3000,
     open: false,
     hot: true
   },
-};
+});
 
 export default config;

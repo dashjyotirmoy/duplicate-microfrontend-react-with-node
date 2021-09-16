@@ -1,15 +1,13 @@
 import { Router } from 'express'; 
 
-import handle from './utils/handle-error'; 
-
-const nocache = (req: any, res: any, next: any) => {
-  res.setHeader('cache-control', 'no-store');
-  return next();
-};
+import example from './api/example';
+import { noStore } from './utils/cache-control';
 
 const routes = Router();
-routes.use(nocache);
-// API routes
-routes.use('/test', handle((req: any, res: any) => res.status(200).send({ success: true })));
+routes.use(noStore);
+
+// Add API routes here
+routes.use('/example', example);
+
 
 export default routes;

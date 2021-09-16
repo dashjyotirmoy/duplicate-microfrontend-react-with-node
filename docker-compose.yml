@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  mfe_example:
+    container_name: mfe_example
+    build:
+      context: .
+    image: dennoa/mfe_example
+    ports:
+      - "3000:3000"

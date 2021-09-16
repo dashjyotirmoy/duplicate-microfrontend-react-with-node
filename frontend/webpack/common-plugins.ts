@@ -16,15 +16,15 @@ const plugins = [
   new HtmlWebpackPlugin({ template: 'src/index.html' }),
   new ForkTsCheckerWebpackPlugin({ async: false }),
   new ESLintPlugin({ extensions: ['js', 'jsx', 'ts', 'tsx'] }),
-  // new ModuleFederationPlugin({
-  //   name: 'example_frontend',
-  //   filename: 'remoteEntry.js',
-  //   exposes: {
-  //     './Details': './src/containers/details',
-  //     './Search': './src/containers/search',
-  //   },
-  //   shared,
-  // }),
+  new ModuleFederationPlugin({
+    name: 'example_frontend',
+    filename: 'remoteEntry.js',
+    exposes: {
+      './ExampleDetails': './src/containers/example-details',
+      './ExampleSearch': './src/containers/example-search',
+    },
+    shared,
+  }),
 ];
 
 export default plugins;

@@ -1,14 +1,5 @@
 import React from 'react';
 
-export const getRequestInit = (jwt: string): RequestInit => ({
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${jwt}`,
-  },
-});
-
 /**
  * Lazy loader
  * e.g. lazyLoad(() => import('./index'));

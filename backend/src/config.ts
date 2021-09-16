@@ -1,4 +1,11 @@
-export const port = +(process.env.MFE_EXAMPLE_BACKEND_PORT || '3001');
+export const example = {
+  baseUrl: 'https://rickandmortyapi.com/api',
+};
+
+export const fetch = {
+  proxyUrl: process.env.MFE_EXAMPLE_BACKEND_PROXY_URL as string,
+  timeoutMs: +(process.env.MFE_EXAMPLE_BACKEND_FETCH_TIMEOUT || '30000'),
+};
 
 export const log = {
   level: (process.env.MFE_EXAMPLE_BACKEND_LOG_LEVEL || 'info') as string,
@@ -11,17 +18,19 @@ export const log = {
   },
 };
 
-export const tls = {
-  dirname: process.env.MFE_EXAMPLE_BACKEND_TLS_DIRNAME as string,
-  key: process.env.MFE_EXAMPLE_BACKEND_TLS_KEY as string,
-  cert: process.env.MFE_EXAMPLE_BACKEND_TLS_CERT as string,
+export const server = {
+  port: +(process.env.MFE_EXAMPLE_BACKEND_PORT || '3000'),
+  tls: {
+    dirname: process.env.MFE_EXAMPLE_BACKEND_TLS_DIRNAME as string,
+    key: process.env.MFE_EXAMPLE_BACKEND_TLS_KEY as string,
+    cert: process.env.MFE_EXAMPLE_BACKEND_TLS_CERT as string,
+  },
+  keepAliveTimeout: +(process.env.MFE_EXAMPLE_BACKEND_SERVER_KEEP_ALIVE_TIMEOUT || '5000'), 
 };
 
-export const proxyUrl = process.env.MFE_EXAMPLE_BACKEND_PROXY_URL as string;
-
 export default {
-  port,
+  example,
+  fetch,
   log,
-  tls,
-  proxyUrl,
+  server,
 };
