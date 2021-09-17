@@ -1,11 +1,11 @@
 import path from 'path';
-import webpack from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import DotEnvPlugin from 'dotenv-webpack';
 
 import commonPlugins from './common-plugins';
 import rules from './common-rules';
 
-const config: webpack.Configuration = {
+const config = (env: any) => ({
   mode: 'production',
   entry: './src/index.tsx',
   output: {
@@ -22,7 +22,8 @@ const config: webpack.Configuration = {
   plugins: [
     ...commonPlugins,
     new CleanWebpackPlugin(),
+    new DotEnvPlugin({ path: path.join(__dirname, 'prod-config.env') }),
   ],
-};
+});
 
 export default config;

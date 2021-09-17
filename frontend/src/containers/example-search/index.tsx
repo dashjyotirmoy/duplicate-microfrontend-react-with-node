@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
 
 import { useCharacters, Character } from '../../fetchers/example-fetcher';
+import { createAndDispatchCustomEvent } from '../../utils';
 
 interface ExampleSearchProps {
+  namespace?: string;
   onSelectCharacter?: (character: Character) => void;
 }
 
 export default function ExampleSearch(props: ExampleSearchProps): React.ReactElement {
+  const namespace = props.namespace || 'examplesearch';
   const [page, setPage] = useState(1);
   const characterInfo = useCharacters(page);
 
+  const selectCharacterId = (character: Character) =>
+    `${namespace}_character_${character.id}`;
+
   const onSelectCharacter = (character: Character) => () => {
+    createAndDispatchCustomEvent({
+      name: `${namespace}:onSelectCharacter`,
+      selector: `#${selectCharacterId(character)}`,
+      detail: { ...character },
+    });
     if (props.onSelectCharacter) {
       props.onSelectCharacter(character);
     }
@@ -28,6 +39,7 @@ export default function ExampleSearch(props: ExampleSearchProps): React.ReactEle
         <ul>
           {characterInfo.data.map(character => (
             <li key={character.id}
+              id={selectCharacterId(character)}
               onClick={onSelectCharacter(character)}
             >
               <a style={{ cursor: 'pointer' }}>{character.name}</a>

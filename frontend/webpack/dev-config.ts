@@ -20,13 +20,13 @@ const config = (env: any) => ({
   plugins: [
     ...commonPlugins,
     new webpack.HotModuleReplacementPlugin(),
-    new DotEnvPlugin(),
+    new DotEnvPlugin({ path: path.join(__dirname, 'dev-config.env') }),
   ],
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.normalize(path.join(__dirname, '..', 'build')),
     historyApiFallback: true,
-    port: 3000,
+    port: 3001,
     open: false,
     hot: true
   },

@@ -1,5 +1,5 @@
 # ---------------- Build the frontend -----------------------
-FROM node:14 as frontend_builder
+FROM node:latest as frontend_builder
 
 COPY frontend /usr/app
 
@@ -15,7 +15,7 @@ RUN npm run build
 # The frontend static files are now available under build/
 
 # ---------------- Build and run the backend -----------------------
-FROM node:14
+FROM node:latest
 
 COPY backend /usr/app
 

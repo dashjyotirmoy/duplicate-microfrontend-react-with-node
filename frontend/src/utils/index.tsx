@@ -15,3 +15,22 @@ export function lazyLoad(importFunc: () => Promise<{ default: React.ComponentTyp
     );
   }
 }
+
+interface CreateAndDispatchCustomEventOptions {
+  name: string;
+  selector: string;
+  detail?: Record<string, unknown>;
+}
+
+export function createAndDispatchCustomEvent(options: CreateAndDispatchCustomEventOptions): void {
+  const event = new CustomEvent(options.name, {
+    detail: options.detail || {},
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  });
+  const elem = document.querySelector(options.selector);
+  if (elem) {
+    elem.dispatchEvent(event);
+  }
+}

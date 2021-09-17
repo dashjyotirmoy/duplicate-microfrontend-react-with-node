@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Iframe Test for Example Frontend</title>
+  </head>
+  <body>
+    <!--
+      This is setup to test the apps running in dev mode.
+      Note the use of # in the src urls. This gives a simple way to bootstrap the relevant React App.
+     -->
+    <iframe
+      src="http://localhost:3001/#example-search"
+      height="400px"
+      width="400px"
+    >
+    </iframe>
+    <script>
+      window.addEventListener('message', event => {
+        const { messageName, character } = event.data;
+        // The example search function posts a message with a messageName of 'examplesearch'
+        if (messageName === 'examplesearch' && character) {
+          const iframeId = 'example_details';
+          const existing = document.getElementById(iframeId);
+          if (existing) {
+            document.body.removeChild(existing);
+          }
+          const iframe = document.createElement('iframe');
+          iframe.id = iframeId;
+          iframe.src = `http://localhost:3001/#example-details/${character.id}`;
+          iframe.height = 400;
+          iframe.width = 400;
+          document.body.appendChild(iframe)
+        }
+      });
+    </script>
+  </body>
+</html>

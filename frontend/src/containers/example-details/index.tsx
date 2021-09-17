@@ -20,7 +20,8 @@ export default function ExampleDetails(props: ExampleDetailsProps): React.ReactE
       {characterInfo.data && (
         <div>
           <h2>{characterInfo.data.name}</h2>
-          <img src={characterInfo.data.image} />
+          <h4>{characterInfo.data.species} {characterInfo.data.gender}</h4>
+          <img src={characterInfo.data.image} alt={characterInfo.data.name} />
         </div>
       )}
     </>

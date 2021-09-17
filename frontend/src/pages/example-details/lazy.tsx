@@ -1,3 +1,3 @@
-import { lazyLoad } from '../../utils';
+import { lazyLoad } from 'utils';
 
 export default lazyLoad(() => import('.'));

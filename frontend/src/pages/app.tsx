@@ -1,11 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import ExampleDetailsPage from './pages/example-details/lazy';
-import ExampleHomePage from './pages/example-home/lazy';
-import ExampleSearchPage from './pages/example-search/lazy';
+import ExampleDetailsPage from './example-details/lazy';
+import ExampleHomePage from './example-home/lazy';
+import ExampleSearchPage from './example-search/lazy';
 
-export default function App(): React.ReactElement {
+export default function TestApp(): React.ReactElement {
   return (
     <Router>
       <Switch>
@@ -20,5 +20,5 @@ export default function App(): React.ReactElement {
         </Route>
       </Switch>
     </Router>
-  );
+  );  
 }
